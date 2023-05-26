@@ -9,12 +9,21 @@ class Book(models.Model):
     raiting = models.IntegerField(default=0)
     publisher = models.CharField(max_length=50, null=True)
 
+    genre = models.ForeignKey("Genre", on_delete=models.DO_NOTHING, null=True, blank=True, related_name='horoscope')
+
     def __str__(self):
         return f'Книга: {self.id}  Название:  {self.title} Автор: {self.author}'
 #         строковое представление объекта (записи в БД)
 
 class Genre(models.Model):
     genre = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f'Жанр: {self.id} {self.genre}'
+
+
+
+
 
 
 # эту таблицу надо теперь записать в БД python3 manage.py makemigrations -
