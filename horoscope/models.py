@@ -22,7 +22,23 @@ class Genre(models.Model):
         return f'Жанр: {self.id} {self.genre}'
 
 
+class Movie(models.Model):
+    title = models.CharField(max_length=50)
+    studio = models.CharField(max_length=50)
+    year = models.IntegerField()
+    raiting = models.IntegerField(default=0)
+    oscar_year = models.IntegerField(default=0)
 
+    category = models.ForeignKey("Category", on_delete=models.DO_NOTHING, null=True, blank=True, related_name='horoscope')
+
+    def __str__(self):
+        return f'Фильм: {self.id} {self.title} {self.oscar_year}'
+
+class Category(models.Model):
+    category = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f'Категория: {self.id} {self.category}'
 
 
 
