@@ -9,6 +9,7 @@ def index(request):
 def books(request):
     return HttpResponse('Список книг')
 
+
 def movies(request):
     return HttpResponse('Список фильмов')
 

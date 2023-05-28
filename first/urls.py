@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', index),
     path('get_books/', books),
+    path('get_movies/', movies),
 ]
