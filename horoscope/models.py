@@ -2,14 +2,41 @@ from django.db import models
 
 # Create your models here.
 
+class Tag(models.Model):
+    title = models.CharField(max_length=50)
+    books = models.ManyToManyField('Book', null=True, blank=True, related_name='books')
+
+    def __str__(self):
+        return f'Тэг: {self.title}'
+
+class Publisher(models.Model):
+    title = models.CharField(max_length=50)
+    LANGUAGES = (
+        ("ru","russian"),
+        ('by', 'белмова'),
+        ("fr", "french"),
+    )
+
+    language = models.CharField(max_length=2, choices=LANGUAGES, default='by')
+
+    def __str__(self):
+        return f'{self.title} Язык: {self.language}'
+
+
 class Book(models.Model):
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
     year = models.IntegerField()
     raiting = models.IntegerField(default=0)
-    publisher = models.CharField(max_length=50, null=True)
+
+    class Meta:
+        verbose_name = 'Книга'
+        verbose_name_plural = "Книги"
+
 
     genre = models.ForeignKey("Genre", on_delete=models.DO_NOTHING, null=True, blank=True, related_name='horoscope')
+    tags = models.ManyToManyField("Tag", null=True, blank=True, related_name='tags')
+    publisher = models.OneToOneField("Publisher", on_delete=models.DO_NOTHING, default=None)
 
     def __str__(self):
         return f'Книга: {self.id}  Название:  {self.title} Автор: {self.author}'

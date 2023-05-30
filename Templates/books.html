@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги</title>
+</head>
+<body>
+    <h1>Список книг</h1>
+        {% for book in books %}
+            <p>{{book.title}}</p>
+            <p>{{book.year}}</p>
+        {% endfor %}
+
+    <h3>Жанр:</h3>
+        {% for genre in genres %}
+            <p>{{genre}}</p>
+        {% endfor %}
+
+    <h3>Издатели:</h3>
+        {% for publisher in publishers %}
+            <p>{{publisher.title}}</p>
+        {% endfor %}
+
+</body>
+</html>

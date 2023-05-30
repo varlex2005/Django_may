@@ -22,6 +22,6 @@ from horoscope.views import index, books, movies
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', index),
-    path('get_books/', books),
-    path('get_movies/', movies),
+    path('books/', books),
+    path('movies/', movies),
 ]
